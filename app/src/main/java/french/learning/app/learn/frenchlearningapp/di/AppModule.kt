@@ -2,6 +2,7 @@ package french.learning.app.learn.frenchlearningapp.di
 
 import android.content.Context
 import androidx.room.Room
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
@@ -23,7 +24,15 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+    fun provideFirebaseFirestore(
+        @ApplicationContext context: Context
+    ): FirebaseFirestore? {
+        return if (FirebaseApp.getApps(context).isNotEmpty()) {
+            FirebaseFirestore.getInstance()
+        } else {
+            null
+        }
+    }
 
     @Provides
     @Singleton

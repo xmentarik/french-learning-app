@@ -10,12 +10,13 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class FirestoreDataSource @Inject constructor(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore?
 ) {
 
     suspend fun fetchLessons(): List<Lesson> {
+        val activeFirestore = firestore ?: return generateSeedLessons()
         return runCatching {
-            val snapshot = firestore.collection("lessons").get().await()
+            val snapshot = activeFirestore.collection("lessons").get().await()
             if (snapshot.isEmpty) {
                 generateSeedLessons()
             } else {

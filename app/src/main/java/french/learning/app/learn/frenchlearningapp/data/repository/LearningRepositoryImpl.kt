@@ -29,7 +29,15 @@ class LearningRepositoryImpl @Inject constructor(
 
     override suspend fun refreshLessonsFromRemote() {
         val remoteLessons = firestoreDataSource.fetchLessons()
-        dao.upsertLessons(remoteLessons.map { it.toEntity() })
+        val existingCompletionByLessonId = dao.observeLessons()
+            .first()
+            .associate { lessonEntity -> lessonEntity.id to lessonEntity.isCompleted }
+        val mergedLessons = remoteLessons.map { lesson ->
+            lesson.copy(
+                isCompleted = existingCompletionByLessonId[lesson.id] ?: lesson.isCompleted
+            )
+        }
+        dao.upsertLessons(mergedLessons.map { it.toEntity() })
     }
 
     override suspend fun getLessonById(lessonId: String): Lesson? = dao.getLessonById(lessonId)?.toDomain()
