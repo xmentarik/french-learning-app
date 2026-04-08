@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "14306893722",
+    "project_id": "french-app-learning",
+    "storage_bucket": "french-app-learning.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14306893722:android:3f8fcda0b1c949a1cb6423",
+        "android_client_info": {
+          "package_name": "french.learning.app.learn.frenchlearningapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEWFqSDcU9KfL8gXV3iGlfLU2-lJJpxNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

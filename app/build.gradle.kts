@@ -39,7 +39,8 @@ android {
     buildFeatures {
         compose = true
     }
-}
+
+    }
 
 dependencies {
     implementation(libs.androidx.core.ktx)
@@ -53,21 +54,24 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.hilt.navigation.compose)
+    // Check for the latest version, as of early 2026 it is 25.1.0 or higher
+    implementation(libs.play.services.ads)
 
     implementation(libs.androidx.datastore.preferences)
 
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
     implementation(libs.kotlinx.coroutines.play.services)
-
     implementation(libs.hilt.android)
-    implementation(libs.gson)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
